@@ -14,9 +14,13 @@
                 
                 let canvas = document.querySelector('#canvas') //variable selects canvas id.
                 let context = canvas.getContext('2d')
-                context.fillRect(120, 20, 50, 200) //setting up size coordiates
+                context.fillRect(120, 20, 50, 200) //setting up size coordiates solid or filled in.
+                context.fillRect(20, 30, 80, 300)
+                
 
-                context.strokeRect(200, 300, 100, 150)
+                context.strokeRect(200, 300, 100, 150) //outlined coordinates
+                context.strokeRect(25, 100, 150, 300) //new
+
             </script>
         </body>
     </head>
