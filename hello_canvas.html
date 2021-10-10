@@ -9,17 +9,63 @@
         </style>
         <body>
             <!--tag id so java script can find it?-->
-            <canvas id="canvas" height="200" width="300"></canvas> <!--empty element-->
+            <canvas id="canvas" height="500" width="500"></canvas> <!--empty element-->
             <script>
                 
                 let canvas = document.querySelector('#canvas') //variable selects canvas id.
-                let context = canvas.getContext('2d')
-                context.fillRect(120, 20, 50, 200) //setting up size coordiates solid or filled in.
-                context.fillRect(20, 30, 80, 300)
+                let context = canvas.getContext('2d')//does the drawing on the page.
+
+                context.beginPath()//begin method set to empty.
+                context.moveTo(30, 30) //setting coordinates
+                context.lineTo(450, 450)
+                context.lineTo(400, 30)
+                context.lineTo(30,30)
+                context.lineTo(450, 450)//repeat here gives you another line drawn in to make sharp corner.
+                context.lineWidth = 10
+                context.strokeStyle = 'purple'
+                context.stroke() //stroke method calls to draw the line
+
+                /*path is setting where this path is going to follow from begin to the line enteries 
+                order where styles doesn't matter beginning or middle or end. Stroke is the end call to draw */
+                context.beginPath()
+                context.moveTo(250, 250)
+                context.lineTo(0, 500)
+                context.lineWidth = 1
+                context.strokeStyle = 'orange'
+                context.stroke()//calls to draw the line.
+
+                context.beginPath()
+                context.arc(250,250,75,0, Math.PI)
+                /* (x:number, y: number, radius: number, startangel: number, endAngle:number
+                anticlockwise?:bloolean:void) coordinate is middle of the circle (0, 6.3 is full circle)
+                also 0, math.pi gives an exact half circle. drawing is clockwise*/
+                context.stroke()//end close calls to draw
+
+                context.font = '50px Coourier'     
+                context.fillText('Hockey', 200,485)
+                context.strokeText('More News',150 , 435 )
                 
 
+                //border is set black in css styling
+                context.fillRect(130, 10, 40, 300) //asking context to draw this.setting up size coordiates solid or filled in.
+                //fillStyle defailt is black
+                context.fillStyle = 'red'
+                context.fillRect(10, 35, 65, 300)
+                /*x:number(number from the left) , y:number how far down from the top, w:width , h: height. 
+                 play with the height, width horizontial, and vertical postioning. like a grid x & y cordinates.
+                0 top left corner moves vertical down the page to 500*/
                 context.strokeRect(200, 300, 100, 150) //outlined coordinates
-                context.strokeRect(25, 100, 150, 300) //new
+                
+                context.strokeStyle = 'green' // context style only affect this shapes below or going down the page.
+                context.lineWidth = 5
+                context.strokeRect(90, 25, 30, 300) //new
+                
+                context.fillStyle = 'yellow'
+                context.fillRect(220, 100, 150, 150 )//solid red no is yellow other box stays red
+                context.strokeStyle = 'blue'
+                context.lineWidth = 2
+                context.strokeRect(220,100,150,150)//using stroke to make a border 
+                
 
             </script>
         </body>
