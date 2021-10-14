@@ -1,7 +1,7 @@
 //alert ("is this working")//is your pages linked
 
 let canvas = document.querySelector('#canvas')//selects the jpeg
-let context = canvas.getContext('2d') // 
+let context = canvas.getContext("2d") // properties for drawing conext takes on canvas size,color, action properties.
 
 let input = document.querySelector('#image-text') //our html text box
 input.disable = true  

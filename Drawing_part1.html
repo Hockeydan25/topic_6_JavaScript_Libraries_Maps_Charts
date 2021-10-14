@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Circle Event Part 1 Lab</title>
+
+  <style>
+/* putting a border around the canvas */
+    #canvas {
+      border: 1px black solid;
+    }
+
+
+  </style>
+
+</head>
+<body>
+
+  <!-- note to user to make some art -->
+<p>Drag the mouse on the canvas to make Art</p> 
+<!-- seting a blank canvas element-->
+<canvas id="canvas" height="400" width="400"></canvas>
+<br>
+<!--3 differnt drawing types user can use to mkae art on the canvas id is helping js grab the action or input-->
+<input id="text-box" type="text-box">
+<br>
+<input id="range" type="range">
+<br>
+<input id="color" type="color">
+
+
+
+<script>
+  //getting all the ids for our script to run the html elements.
+  let canvas = document.querySelector('#canvas')
+  let context = canvas.getContext('2d')
+  let colorSelect = document.querySelector('#color')
+  let rangeSelect = document.querySelector('#range')
+  let textInput = document.querySelector('#text-box')
+  // Keep track of whether the mouse button has been pressed down or not.
+  // Think of this as whether the user is drawing or not, is their brush on the canvas?
+  let mousedown = false 
+
+  canvas.addEventListener('mousedown', function() {
+    mousedown = true
+
+  })
+
+  canvas.addEventListener('mouseup', function() {
+    mousedown = false 
+  })
+
+  // If mouse leaves the canvas then stop drawing
+  canvas.addEventListener('mouseout', function() {
+    mousedown = false
+  })
+
+  canvas.addEventListener('mousemove', function() {
+
+    // If the mouse button is not pressed down, do not draw.
+    if (!mousedown) { return }
+
+    // event is a built-in variable, contains the event that triggered this function
+    // get the x, y location of the event
+    let x = event.offsetX
+    let y = event.offsetY   //offsetX, offsetY, may not work in older browsers
+    //variables and value storing. can use this in  the context page styling and selections user can interact with.
+    let color = colorSelect.value 
+    let range = rangeSelect.value 
+    let textBox = textInput.value
+    context.strokeStyle = color
+    context.strokeWidth = range 
+    context.strokeText = textBox
+    //Draw a filled rectangle centered under the mouse click
+    //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
+    //context.arc()
+    //context.fillRect(x-5, y-5, 10, 10)
+    //drawin a circle placed range referance working with a sl
+    context.beginPath();
+    context.arc(x-5, y-5, range, 0, 2 * Math.PI);
+    context.stroke()
+    
+    //fill font sizing for text. definantly need to play with these more. 
+    context.font = "30px Comic Sans MS";
+    context.strokeStyle = "red";
+    context.textAlign = "center";
+    context.fillText(textBox, canvas.width/2, canvas.height/2);
+
+      
+  })
+
+
+
+
+</script>
+
+</body>
+</html>
