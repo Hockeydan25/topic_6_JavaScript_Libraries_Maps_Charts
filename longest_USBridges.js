@@ -1,13 +1,16 @@
-let longestUSBidgesCoordinates = [44.96, -93.2] //visist differnet parts od the world 
-let zoomLevel= 4 //zoom levels 1 =The Whole World, 20 = city blocks.
+let longestUSBidgesCoordinates = [44.96, -93.2] //variable for starting point of map coordinates
+let zoomLevel= 4 //zoom levels 1 =The Whole World to  20 = city blocks. 
+let bridgeMarker = document.querySelector('#new-icon')
 
-let map = L.map('longest-USBridges-map').setView(longestUSBidgesCoordinates, zoomLevel) //map method needs the div  . no hashTag.
-//tiles are also needed to create map background.
-//L is our leaflet tile layer. A series of images. Note to contributors inportant no 
+//vaiable map calls to html page id, uses style and form set view calls the coordinates and zoomlevel created
+let map = L.map('longest-USBridges-map').setView(longestUSBidgesCoordinates, zoomLevel) 
+/*map method needs the div  . no hashTag.tiles are also needed to create map background.
+L is our leaflet tile layer. A series of images. Note: contributors important to have listed
+open source is doing the work here we just pic parts we need.*/ 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-
+//array is storing the data for the bridges
 bridges =  [
     {"name": "Verrazano-Narrows Bridge", "cityState": "New York, NY", "Span": "1298.4", "Location": [40.6066, -74.0447]},
     {"name": "Golden Gate Bridge", "cityState": "San Fransico, CA", "Span": "1280.2", "Location": [37.8199, -122.4783]},
@@ -18,13 +21,13 @@ bridges =  [
 ]
 bridges.forEach(function(bridgeNames){ // sets arrary bridged to loop through longestUSBridges. 
     //to do draw a marker for each bridge marker. use L.marker
-    L.marker(bridgeNames.Location) //gets coordiantes 
+    L.marker(bridgeMarker.Location) //Marks coordiantes 
     let markerText = `<b>${bridgeNames.name}<br> span(Meters) ${bridgeNames.Span}<br>${bridgeNames.cityState} <b>`
-    L.marker(bridgeNames.Location) //gets coordiantes 
-       .bindPopup(markerText).addTo(map) //pops text on the marker 
+    L.marker(bridgeNames.Location) //marks coordiantes 
+       .bindPopup(markerText).addTo(map) //pops text on the marker so you can read what it is marking. 
     
 })
-let canvas = document.querySelector('#span_chart' )//ink to the htnl page canvas id.
+let canvas = document.querySelector('#span_chart' )//ink to the html page canvas id.
 let context = canvas.getContext('2d')//telling we are using a two demsion 
 //my chart started at 0 right away before we set the option property.
 let chart = new Chart(context, {
