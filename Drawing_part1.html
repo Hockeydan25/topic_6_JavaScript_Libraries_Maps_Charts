@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- tells the browser to use the utf-8 character encoding when translating machine code 
+    into human-readable text and vice versa to be displayed in the browser. not always necassary
+  but we don't always know what the user is broswing with? -->
   <meta charset="UTF-8">
-  <title>Mouse Circle Event Part 1 Lab</title>
+  <!-- page tab identifier -->
+  <title>Mouse Circle Event Part 1 Lab</title> 
 
-  <style>
+
+<style>
 /* putting a border around the canvas */
     #canvas {
       border: 1px black solid;
@@ -21,15 +26,16 @@
 <!-- seting a blank canvas element-->
 <canvas id="canvas" height="400" width="400"></canvas>
 <br>
-<!--3 differnt drawing types user can use to mkae art on the canvas id is helping js grab the action or input-->
-<input id="text-box" type="text-box">
+<!--3 differnt drawing types user can use to mkae art on the canvas id is helping js 
+  grab the action or input. I created a label here to try and stregthen my understanding of these pointers.-->
+<label for="text-box">Put your text here:</label>
+<input id="text-box" type="text" name="text-box"> 
 <br>
 <input id="range" type="range">
 <br>
 <input id="color" type="color">
 
-
-
+<!-- start of script coding, reads the script and processes one action at a time-->
 <script>
   //getting all the ids for our script to run the html elements.
   let canvas = document.querySelector('#canvas')
@@ -37,10 +43,12 @@
   let colorSelect = document.querySelector('#color')
   let rangeSelect = document.querySelector('#range')
   let textInput = document.querySelector('#text-box')
+  
   // Keep track of whether the mouse button has been pressed down or not.
   // Think of this as whether the user is drawing or not, is their brush on the canvas?
   let mousedown = false 
-
+/* these next four event listners functions are going to watch the canvas page for future actions.
+  need to learn these types of actions. */
   canvas.addEventListener('mousedown', function() {
     mousedown = true
 
@@ -57,11 +65,11 @@
 
   canvas.addEventListener('mousemove', function() {
 
-    // If the mouse button is not pressed down, do not draw.
+    // If the mouse button is not pressed down, do not draw. Return is letting the mouse draw to end/resstart. 
     if (!mousedown) { return }
 
     // event is a built-in variable, contains the event that triggered this function
-    // get the x, y location of the event
+    // get the x, y location of the event where is is happening on the canvas.
     let x = event.offsetX
     let y = event.offsetY   //offsetX, offsetY, may not work in older browsers
     //variables and value storing. can use this in  the context page styling and selections user can interact with.
@@ -70,7 +78,10 @@
     let textBox = textInput.value
     context.strokeStyle = color
     context.strokeWidth = range 
-    context.strokeText = textBox
+    
+    //context.strokeText = textBox not needed as a setting text is within the strokeText or fillText.
+    // this was not allowing the fillText
+
     //Draw a filled rectangle centered under the mouse click
     //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
     //context.arc()
@@ -80,19 +91,20 @@
     context.arc(x-5, y-5, range, 0, 2 * Math.PI);
     context.stroke()
     
-    //fill font sizing for text. definantly need to play with these more. 
-    context.font = "30px Comic Sans MS";
+    /*fill font sizing, and type style for text. definantly need to play with these more.
+    stroke style sets the color outlined text characters, stroke text setting the text box and 
+    canvas sizing properties. fill is the oppoiste setting just as it implies the fill  */
+    context.font = "40px Comic Sans MS";
     context.strokeStyle = "red";
     context.textAlign = "center";
     context.fillText(textBox, canvas.width/2, canvas.height/2);
+    context.fillStyle = "black"
+    context.strokeText(textBox, canvas.width/2, canvas.height/2);
 
-      
   })
 
-
-
-
 </script>
-
+<!-- Script end -->
+<!-- end of html body frames -->
 </body>
 </html>

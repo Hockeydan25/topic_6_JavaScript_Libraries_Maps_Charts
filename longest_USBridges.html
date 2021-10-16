@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <h1>
     <!-- Leaflet script and CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" /> 
     <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
-    <div> <a href="https://www.freepik.com" title="Freepik"></a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    
     <!-- Our stylesheet. Make sure the size of the map div is set before trying to draw the map.-->
     <link rel="stylesheet" type="text/css" href="longest_USBridges_style.css">
-    <!-- Our script, uses Leaflet to draw the maps and map components for this page  -->
-    <script async defer src="longest_Usbridges.js"></script>
-
+    <!-- Our script, uses Leaflet to draw the maps and map components for this page  
+    link to javascript file-->
+    <script async defer src="longest_USBridges.js"></script>
+    </h1>
+    
+    <h2>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+        <script async defer src="span_chart.js"></script> 
+        <!-- defer is going to make it wait for the aboce to load -->
+   
+    </h2>
 </head>
 <body>
 
-    <h1>The Longest US Bridges List</h1>
-    <div id="longest_Usbridges"></div>
+    <h1>Longest US Bridges</h1>
+    <div id="longest-USBridges-map"></div>
 
-    <p>Click the list.</p>
 
+    <h2>
+        <h1>Span Comparison chart</h1> 
     
+    <canvas id="span_chart"></canvas>
+    </h2>
+
 </body>
 </html>
