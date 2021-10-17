@@ -1,6 +1,11 @@
-let longestUSBidgesCoordinates = [44.96, -93.2] //variable for starting point of map coordinates
+let longestUSBidgesCoordinates = [37.0902, -95.7129] //variable for starting point of map coordinates
 let zoomLevel= 4 //zoom levels 1 =The Whole World to  20 = city blocks. 
-let bridgeMarker = document.querySelector('#new-icon')
+// variable name and here the icon propery values are set for the myIcon object element.
+let myIcon = L.icon({
+    iconUrl: 'bridge.png', //where the file is goint to get it from.
+    iconSize: [33, 33], //sixe of the icon.
+    
+});
 
 //vaiable map calls to html page id, uses style and form set view calls the coordinates and zoomlevel created
 let map = L.map('longest-USBridges-map').setView(longestUSBidgesCoordinates, zoomLevel) 
@@ -21,17 +26,20 @@ bridges =  [
 ]
 bridges.forEach(function(bridgeNames){ // sets arrary bridged to loop through longestUSBridges. 
     //to do draw a marker for each bridge marker. use L.marker
-    L.marker(bridgeMarker.Location) //Marks coordiantes 
+    L.marker(bridgeNames.Location, {icon: myIcon}).addTo(map);//creates ICON for marker, displayed on the map.
+    //L.marker().addTo(map)
+    //L.marker(bridgeMarker.Location) //Marker icon of coordiantes displays on the map 
     let markerText = `<b>${bridgeNames.name}<br> span(Meters) ${bridgeNames.Span}<br>${bridgeNames.cityState} <b>`
-    L.marker(bridgeNames.Location) //marks coordiantes 
+    //L.marker(myIcon.Location)
+    L.marker(bridgeNames.Location, {icon: myIcon}) //marks coordiantes 
        .bindPopup(markerText).addTo(map) //pops text on the marker so you can read what it is marking. 
     
 })
-let canvas = document.querySelector('#span_chart' )//ink to the html page canvas id.
+let canvas = document.querySelector('#span_chart' )//link to the html page canvas id.
 let context = canvas.getContext('2d')//telling we are using a two demsion 
 //my chart started at 0 right away before we set the option property.
-let chart = new Chart(context, {
-    type: 'bar',
+let chart = new Chart(context, {   //new object with arrays and more objects
+    type: 'bar',    //type or style of the chart.
     data: {
         labels: ['Verrazano-Narrows Bridge', 'Golden Gate Bridge','Mackinac Bridge', 'George Washington Bridge', 'Tacoma Narrows Bridge'],//don't forget the common.
         datasets: [{
@@ -43,7 +51,7 @@ let chart = new Chart(context, {
     options: {
         scales: {
             yAxes:[{
-                beginAtZero: true
+                beginAtZero: true  //sets chart to 0 pint on the bar side chart for meters legnths of bridges.
             }]
         }
     }
